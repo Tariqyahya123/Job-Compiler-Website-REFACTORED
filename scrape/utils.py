@@ -128,7 +128,7 @@ def getApiKeys():
     
     adzuna_app_id = os.environ.get('adzuna_app_id')
     adzuna_app_key = os.environ.get('adzuna_app_key')
-    jooble_api_key = os.environ.get('jooba_api_key')
+    jooble_api_key = os.environ.get('jooble_api_key')
 
     return adzuna_app_id, adzuna_app_key, jooble_api_key
 
