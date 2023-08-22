@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path
-from scrape.views import returnHome, renderResults
+from scrape.views import returnHome, renderResults, renderStarred
 
 
 urlpatterns = [
