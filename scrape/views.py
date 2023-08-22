@@ -218,6 +218,13 @@ def renderResults(request):
     results = getResults(search_criteria_object)
 
 
+    if len(results) == 0:
+        return render(request, 'scrape/results-none.html')
+
+
+
+
+
 
     return render(request, 'scrape/results.html', {'jobs' : results})
 
