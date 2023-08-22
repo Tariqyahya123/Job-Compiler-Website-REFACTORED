@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from urllib.parse import quote
 import requests
 import json
 import os
@@ -136,4 +137,11 @@ def getApiKeys():
     jooble_api_key = os.environ.get('jooble_api_key')
 
     return adzuna_app_id, adzuna_app_key, jooble_api_key
+
+def urlEncodeJobTitleForAdzuna(original_string):
+        
+    modified_string = quote(original_string)
+
+
+    return modified_string
 

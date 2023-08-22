@@ -4,7 +4,7 @@ import requests
 import json
 import random
 from .models import ResultJobs
-from .utils import SearchCriteria, HttpClient, findCountry, getApiKeys
+from .utils import SearchCriteria, HttpClient, findCountry, getApiKeys, urlEncodeJobTitleForAdzuna
 
   
 
@@ -93,7 +93,6 @@ class AdzunaResults(HttpClient):
 
 def returnHome(request):
 
-
     if request.method == "POST":
 
         return renderResults(request)
@@ -118,6 +117,8 @@ def getResults(object):
 
     adzuna_app_id, adzuna_app_key, jooble_api_key = getApiKeys()
 
+
+
     
 
     jooble_payload = {
@@ -134,7 +135,11 @@ def getResults(object):
     if object.adzuna_location in adzuna_country_list:
 
 
-        adzuna_results = AdzunaResults(url=f'http://api.adzuna.com/v1/api/jobs/{object.adzuna_location}/search/1?app_id={adzuna_app_id}&app_key={adzuna_app_key}&results_per_page=20&what=javascript%20developer&content-type=application/json')
+        adzuna_job_title = urlEncodeJobTitleForAdzuna(object.job_title)
+
+
+
+        adzuna_results = AdzunaResults(url=f'http://api.adzuna.com/v1/api/jobs/{object.adzuna_location}/search/1?app_id={adzuna_app_id}&app_key={adzuna_app_key}&results_per_page=20&what={adzuna_job_title}&content-type=application/json')
 
         try:
 
@@ -158,19 +163,43 @@ def getResults(object):
 
     else:
 
-        if jooble_results.list == None or object.adzuna_location == "" :
+        if jooble_results.list == None and object.adzuna_location == "" :
+
+
+            adzuna_job_title = urlEncodeJobTitleForAdzuna(object.job_title)
+
 
             all_regions_list = []
 
             for i in adzuna_country_list[:2]:
 
-                adzuna_results = AdzunaResults(url=f'http://api.adzuna.com/v1/api/jobs/{i}/search/1?app_id=ac3dc425&app_key=a77ca4c4cb4816504e4b00af81b49755&results_per_page=20&what=javascript%20developer&content-type=application/json')
+                adzuna_results = AdzunaResults(url=f'http://api.adzuna.com/v1/api/jobs/{i}/search/1?app_id={adzuna_app_id}&app_key={adzuna_app_key}&results_per_page=20&what={adzuna_job_title}&content-type=application/json')
 
                 all_regions_list = all_regions_list + adzuna_results.list
                 
 
             return all_regions_list
 
+
+        elif object.adzuna_location == "":
+
+            adzuna_job_title = urlEncodeJobTitleForAdzuna(object.job_title)
+
+
+            all_regions_list = []
+
+            for i in adzuna_country_list[:2]:
+
+                adzuna_results = AdzunaResults(url=f'http://api.adzuna.com/v1/api/jobs/{i}/search/1?app_id={adzuna_app_id}&app_key={adzuna_app_key}&results_per_page=20&what={adzuna_job_title}&content-type=application/json')
+
+                all_regions_list = all_regions_list + adzuna_results.list
+
+            combined_list =  all_regions_list + jooble_results.list
+
+            random.shuffle(combined_list)
+
+
+            return combined_list
 
 
 
