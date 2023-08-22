@@ -158,7 +158,7 @@ def getResults(object):
 
     else:
 
-        if jooble_results.list == None:
+        if jooble_results.list == None or object.adzuna_location == "" :
 
             all_regions_list = []
 
@@ -170,6 +170,10 @@ def getResults(object):
                 
 
             return all_regions_list
+
+
+
+
 
 
         return jooble_results.list

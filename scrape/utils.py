@@ -77,6 +77,11 @@ class HttpClient(ABC):
 
 def findCountry(location_name):
 
+
+    if location_name == "":
+        return ""
+
+
     name = location_name
 
 
