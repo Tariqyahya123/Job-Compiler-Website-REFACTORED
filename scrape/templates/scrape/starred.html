@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OverWork - Starred Jobs</title>
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/styles-starred.css'%}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}" />
+
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <a class='home-link' href="/">Home</a>
+
+        </div>
+        <div class="grid-container">
+
+
+            <div class="results-display">
+
+
+
+
+                <!-- <div class="result">
+                    <h1>Associate Packaging Engineer - Columbus, OH</h1>
+                    <h2>Abbott Laboratories</h2>
+                    <h3>Columbus, OH</h3>
+
+
+                </div>
+                <div class="result">
+                    <h1>Associate Packaging Engineer - Columbus, OH</h1>
+                    <h2>Abbott Laboratories</h2>
+                    <h3>Columbus, OH</h3>
+
+
+                </div>
+                <div class="result">
+                    <h1>Associate Packaging Engineer - Columbus, OH</h1>
+                    <h2>Abbott Laboratories</h2>
+                    <h3>Columbus, OH</h3>
+
+
+                </div>
+                <div class="result">
+                    <h1>Associate Packaging Engineer - Columbus, OH</h1>
+                    <h2>Abbott Laboratories</h2>
+                    <h3>Columbus, OH</h3>
+
+
+                </div>
+                <div class="result">
+                    <h1>Associate Packaging Engineer - Columbus, OH</h1>
+                    <h2>Abbott Laboratories</h2>
+                    <h3>Columbus, OH</h3>
+
+
+                </div> -->
+
+
+            </div>
+        </div>
+        <!-- <div class="pagination">
+            <div class="numbers-next">
+                <div class="back-container">
+                    &#65308; <input type="button" value='Back' id='back-button'>
+
+                </div>
+                <div class="number">
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                    </ul>
+                </div>
+                <div class="next-container">
+                    <input type="button" value='Next' id='next-button'>
+                    &#65310;
+                </div>
+            </div>
+        </div> -->
+    </div>
+    <script>
+
+
+        for (var i = 0; i < localStorage.length; i++) {
+
+            const h1 = (JSON.parse(localStorage[Object.keys(localStorage)[i]])[0])
+            const h2 = (JSON.parse(localStorage[Object.keys(localStorage)[i]])[1])
+            const h3 = (JSON.parse(localStorage[Object.keys(localStorage)[i]])[2])
+            const link = (JSON.parse(localStorage[Object.keys(localStorage)[i]])[3])
+
+
+
+            // document.getElementsByClassName('result').innerHTML += ' <a class=\'job-links\' href="{{i.link}}" target="_blank"></a><div class=\'bookmark-container\'><img class=\'bookmark\' src="{\%static \'images/Five-pointed_star.svg\'\%}" alt=""></div>';
+            document.getElementsByClassName('results-display')[0].innerHTML += ` <div class="result"><a class=\'job-links\' href="${link}" target="_blank"><h1>${h1}</h1><h2>${h2}</h2><h3>${h3}</h3></a><div class=\'bookmark-container\'><img class=\'bookmark\' id='bookmark${i}' src="{%static "images/FA_star.svg"%}" alt=""></div></div>`;
+        }
+
+        var bookmarks = document.querySelectorAll('img');
+        for (let i = 0; i < bookmarks.length; i++) {
+            bookmarks[i].addEventListener("click", function () {
+                const bookmark_storage_index = (bookmarks[i].id.slice(-1))
+                const local_storage_key = (Object.keys(localStorage)[bookmark_storage_index])
+                localStorage.removeItem(local_storage_key)
+                location.reload()
+
+            });
+        }
+    </script>
+</body>
+
+</html>

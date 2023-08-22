@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {%load static%}
+    <link rel="stylesheet" href="{%static 'css/styles-results.css'%}">
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}" />
+
+    <style>
+        .grid-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+    </style>
+    <title>OverWork - Results</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <form action="." method='post'> {%csrf_token%}
+
+
+                <input type="text" name="job_name" id='job_name' placeholder="Enter Job..">
+
+                <input class='location-bar' type="text" name="location_name" id='location_name'
+                    placeholder="Location..">
+
+                <input type="submit" value="GO" name='results-page'>
+
+
+            </form>
+
+            <a class='starred-jobs' href="starred">Starred Jobs</a>
+
+        </div>
+        <div class="grid-container">
+
+            <h1>Sorry, No jobs were found :(</h1>
+            <h1>Try another location</h1>
+
+        </div>
+
+        <!-- <div class="result">
+                    <h1>Associate Packaging Engineer - Columbus, OH</h1>
+                    <h2>Abbott Laboratories</h2>
+                    <h3>Columbus, OH</h3>
+
+
+                </div>
+                <div class="result">
+                    <h1>Associate Packaging Engineer - Columbus, OH</h1>
+                    <h2>Abbott Laboratories</h2>
+                    <h3>Columbus, OH</h3>
+
+
+                </div>
+                <div class="result">
+                    <h1>Associate Packaging Engineer - Columbus, OH</h1>
+                    <h2>Abbott Laboratories</h2>
+                    <h3>Columbus, OH</h3>
+
+
+                </div>
+                <div class="result">
+                    <h1>Associate Packaging Engineer - Columbus, OH</h1>
+                    <h2>Abbott Laboratories</h2>
+                    <h3>Columbus, OH</h3>
+
+
+                </div>
+                <div class="result">
+                    <h1>Associate Packaging Engineer - Columbus, OH</h1>
+                    <h2>Abbott Laboratories</h2>
+                    <h3>Columbus, OH</h3>
+
+
+                </div> -->
+
+
+    </div>
+    </div>
+    <!-- <div class="pagination">
+            <div class="numbers-next">
+                <div class="back-container">
+                    &#65308; <input type="button" value='Back' id='back-button'>
+
+                </div>
+                <div class="number">
+                    <ul>
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                    </ul>
+                </div>
+                <div class="next-container">
+                    <input type="button" value='Next' id='next-button'>
+                    &#65310;
+                </div>
+            </div>
+        </div> -->
+    </div>
+
+    <script>
+        var bookmarks = document.querySelectorAll('img');
+        for (let i = 0; i < bookmarks.length; i++) {
+            bookmarks[i].addEventListener("click", function () {
+                if (bookmarks[i].src.match("/static/images/Five-pointed_star.svg")) {
+                    bookmarks[i].src = "{%static 'images/FA_star.svg'%}";
+                    const bookmarked_job = (bookmarks[i].parentNode.parentNode)
+                    const h1 = (bookmarked_job.getElementsByTagName('h1')['0'].textContent)
+                    const h2 = (bookmarked_job.getElementsByTagName('h2')['0'].textContent)
+                    const h3 = (bookmarked_job.getElementsByTagName('h3')['0'].textContent)
+                    const link = (bookmarked_job.getElementsByTagName('a')['0'].href)
+                    const bookmark_array = []
+                    bookmark_array.push(h1, h2, h3, link)
+
+                    if (localStorage.getItem(`Bookmark${i}`) != null) {
+                        const random_number = Math.floor(Math.random() * 1000);
+
+                        localStorage.setItem(`Bookmark${i}${random_number}`, JSON.stringify(bookmark_array));
+
+                    }
+                    else {
+                        localStorage.setItem(`Bookmark${i}`, JSON.stringify(bookmark_array));
+                    }
+                }
+
+                else if (bookmarks[i].src.match("/static/images/FA_star.svg")) {
+                    bookmarks[i].src = "{%static 'images/Five-pointed_star.svg'%}";
+                    localStorage.removeItem(`Bookmark${i}`)
+
+
+                }
+
+            });
+        }
+        // document.getElementById("bookmark1").addEventListener("click", function () {
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
+
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+</head>
+
+<body>
+
+
+
+
+
+    {%for i in jobs%}
+
+    <h1>{{i.title}}
+        <br>
+        {{i.company}}
+        <br>
+        {{i.location}}
+        <br>
+
+
+
+    </h1>
+
+    <div>
+        {{i.summary | safe}}
+    </div>
+
+    <a href={{i.link}} target='_blank'>LINK</a>
+
+
+    {%endfor%}
+
+</body>
+
+</html> 

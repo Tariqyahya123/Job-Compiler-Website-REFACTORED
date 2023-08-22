@@ -1,0 +1,383 @@
+
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* body */
+body{
+    background-color: #90BAE6;
+}
+
+/* big container */
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* heading */
+
+h1{
+    color: white;
+    padding: 2rem;
+    font-size: 3rem;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    text-align: center;
+
+}
+
+.heading-title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.home-starred{
+    
+    position: absolute;
+    right: 150px;
+    text-decoration: none;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    outline: none;
+    margin-bottom: 0.8rem;
+    
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+/* HERO IMAGE */
+
+.main-img{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+img{
+    width:55%;
+    height: auto;
+ 
+}
+
+
+/* FORM */
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    padding: 2rem;
+
+}
+
+.form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+}
+
+
+
+.job-title, .location-name {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+input[type=text]{
+    border-radius: 50px;
+    height: 3.125rem;
+    width: 27.875rem;
+    border: none;
+    background: #B5D4F4 url('/static/images/search.png') no-repeat;
+    background-size: 20px auto;
+    background-position: 3% 50%;
+    text-indent: 12%;
+    font-size: 1.1rem;
+    outline: none;
+  
+}
+
+input[type=submit]{
+ border-radius: 50px;
+ border: none;
+ background-color: white;
+ width: 11.063rem;
+ height: 3.563rem;
+margin-top: 2rem;
+font-size: 2.25rem;
+font-family: 'Poppins-Light', sans-serif;
+cursor: pointer;
+    
+}
+
+label{
+    color: white;
+    font-size: 1.5rem;
+    padding-bottom: 0.5rem;
+    font-family: 'Poppins-Light', sans-serif;
+
+}
+
+
+
+
+
+
+
+
+
+
+/* FOOTER TEXTÍ */
+
+.footer-text{
+    width: 80%;
+    padding-top: 1rem;
+}
+
+p{
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 200;
+ 
+}
+
+
+
+/* FONTS */
+@font-face {
+    font-family: 'Roboto';
+    src:  url('fonts/Roboto/Roboto-Regular.ttf') ,
+     
+  }
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('fonts/Poppins/Poppins-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Poppins-Light';
+    src: url('fonts/Poppins/Poppins-Light.ttf');
+}
+
+
+/* --------------- MEDIA QUERY --------------------- */
+
+@media screen and (max-width:1250px){
+    input[type=text]{
+        border-radius: 50px;
+        height: 3.125rem;
+        width: 20.875rem;
+        border: none;
+        background: #B5D4F4 url('/static/images/search.png') no-repeat;
+        background-size: 20px auto;
+        background-position: 3% 50%;
+        text-indent: 12%;
+        font-size: 1.1rem;
+        outline: none;
+      
+    }
+  }
+@media screen and (max-width:950px){
+    .home-starred{
+    
+        right: 100px;
+    }
+    *{
+        margin-bottom: 0.7rem;
+    }
+
+    input[type=text]{
+        width: 18rem;
+      
+    }
+
+    p{
+        font-size: 1.3rem;
+    }
+
+    h1{
+        font-size: 2.8rem;
+    }
+
+    .home-starred{
+        font-size: 1.3rem;
+    }
+
+    input[type=submit]{
+        height: 3rem;
+        font-size: 1.8rem;
+      
+    }
+
+
+  }
+
+  @media screen and (max-width:950px){
+    input[type=text]{
+        width: 15rem;
+        height: 2.8rem;
+      
+    }
+    label {
+        font-size: 1.3rem;;
+    }
+
+    img{
+        width:70%;
+    }
+
+    .home-starred{
+        font-size: 1.2rem;
+        right:50px;
+    }
+    .footer-text{
+        margin-top: 3rem;
+    }
+  
+  }
+
+  @media screen and (max-width:650px){
+      input[type=text]{
+          width: 11rem;
+          text-indent: 20%;
+          background-size: 15px auto;
+          background-position: 8% 50%;
+      }
+      img{
+          width: 80%;
+
+      }
+
+      h1{
+          font-size: 2.3rem;
+      }
+
+      .home-starred{
+          font-size: 1rem;
+      }
+
+  }
+
+  @media screen and (max-width:550px){
+      .form{
+         flex-direction: column;
+      }
+
+      input[type=text]{
+          width: 15rem;
+          font-size: 1rem;
+      }
+      p{
+          font-size: 1.1rem;
+      }
+      h1{
+          font-size: 2.1rem;
+      }
+  }
+
+
+  @media screen and (max-width:480px){
+    .form{
+       flex-direction: column;
+    }
+
+    input[type=text]{
+        width: 15rem;
+        height: 2.5rem;
+        
+    }
+
+    img{
+        width: 90%;
+    }
+
+    label{
+        font-size: 1.2rem;
+    }
+
+    .home-starred{
+        right: 25px;
+        font-size: 1rem;
+    }
+
+    input[type=submit]{
+        width: 7rem;
+    }
+
+    .footer-text{
+        margin-top: 1rem;
+    }
+}
+
+@media screen and (max-width:400px){
+    h1{
+        font-size: 1.8rem;
+    }
+    .home-starred{
+        font-size: 0.8rem;
+        right: 25px;
+    }
+}
+
+@media screen and (max-width:380px){
+    h1{
+        font-size: 1.5rem;
+    }
+
+    .home-starred{
+        font-size: 0.8rem;
+        right: 20px;
+    }
+    
+    form{
+        padding-bottom: 0.5rem;
+    }
+   
+
+    label{
+        font-size: 1.2rem;;
+    }
+    input[type=text]{
+        height: 2rem;
+        font-size: 1rem;
+    }
+
+    input[type=submit]{
+        margin-top: 0.2rem;
+        height: 2.5rem;
+        width: 5rem;
+        font-size: 1rem;
+        
+    }
+
+    p{
+        font-size: 0.8rem;
+      
+    }
+
+    .footer-text{
+        padding-top: 0rem;
+        margin-top: 0rem;
+    
+    }
+}
+
+
+
+
+    
