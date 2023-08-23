@@ -4,7 +4,7 @@ import requests
 import json
 import random
 from .models import ResultJobs
-from .utils import SearchCriteria, HttpClient, findCountry, getApiKeys, urlEncodeJobTitleForAdzuna
+from .utils import SearchCriteria, HttpClient, getApiKeys, urlEncodeJobTitleForAdzuna
 
   
 
