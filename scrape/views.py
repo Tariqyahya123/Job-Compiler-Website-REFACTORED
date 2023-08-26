@@ -159,11 +159,35 @@ def getResults(object):
 
         random.shuffle(combined_list)
 
+        if len(combined_list) == 0:
+
+            
+            jooble_payload = {
+        "keywords": object.job_title,
+        "location": ""
+    }
+
+            jooble_results = JoobleResults(url=f"https://jooble.org/api/{jooble_api_key}", 
+            payload=json.dumps(jooble_payload),  headers={'Content-Type': 'text/plain'})
+
+
+            all_regions_list = []
+
+            for i in adzuna_country_list[:2]:
+
+                adzuna_results = AdzunaResults(url=f'http://api.adzuna.com/v1/api/jobs/{i}/search/1?app_id={adzuna_app_id}&app_key={adzuna_app_key}&results_per_page=20&what={adzuna_job_title}&content-type=application/json')
+
+                all_regions_list = all_regions_list + adzuna_results.list
+
+            return all_regions_list + jooble_results.list
+
+
         return combined_list
 
     else:
 
-        if jooble_results.list == None and object.adzuna_location == "" :
+        # preventing the user from not getting any results due to jooble api limit reached
+        if (jooble_results.list == None) :
 
 
             adzuna_job_title = urlEncodeJobTitleForAdzuna(object.job_title)
@@ -179,6 +203,36 @@ def getResults(object):
                 
 
             return all_regions_list
+
+
+        # preventing the user from not getting any results due to no results actually being found for that location.
+        elif len(jooble_results.list) == 0:
+
+            adzuna_job_title = urlEncodeJobTitleForAdzuna(object.job_title)
+
+            all_regions_list = []
+
+            for i in adzuna_country_list[:2]:
+
+                adzuna_results = AdzunaResults(url=f'http://api.adzuna.com/v1/api/jobs/{i}/search/1?app_id={adzuna_app_id}&app_key={adzuna_app_key}&results_per_page=20&what={adzuna_job_title}&content-type=application/json')
+
+                all_regions_list = all_regions_list + adzuna_results.list
+
+            jooble_payload = {
+        "keywords": object.job_title,
+        "location": ""
+    }
+
+            jooble_results = JoobleResults(url=f"https://jooble.org/api/{jooble_api_key}", 
+            payload=json.dumps(jooble_payload),  headers={'Content-Type': 'text/plain'})
+            
+
+            combined_list =  all_regions_list + jooble_results.list
+
+            random.shuffle(combined_list)
+
+
+            return combined_list, "FORCED"
 
 
         elif object.adzuna_location == "":
@@ -218,8 +272,8 @@ def renderResults(request):
     results = getResults(search_criteria_object)
 
 
-    if len(results) == 0:
-        return render(request, 'scrape/results-none.html')
+    if results[1] == "FORCED":
+        return render(request, 'scrape/results-forced.html', {'jobs' : results[0]} )
 
 
 
@@ -227,6 +281,7 @@ def renderResults(request):
 
 
     return render(request, 'scrape/results.html', {'jobs' : results})
+
 
 
 

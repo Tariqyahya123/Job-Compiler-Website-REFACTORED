@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8+#h)*1!ycz%o0l(&7db@_3%go818lok)!#w#op#@v-s=0#9o1'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['overwork-jobs.herokuapp.com', '127.0.0.1' ]
+ALLOWED_HOSTS = ['overwork.info','www.overwork.info', '127.0.0.1' ]
 
 
 # Application definition
