@@ -22,6 +22,7 @@ COPY . .
 # Update pip
 # Install requirements
 RUN pip install --no-cache-dir -r requirements.txt
+RUN python manage.py collectstatic
 
 # Make our entrypoint.sh executable
 RUN chmod +x config/entrypoint.sh
