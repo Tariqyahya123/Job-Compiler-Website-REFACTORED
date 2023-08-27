@@ -33,3 +33,5 @@ services:
       - worker2
     networks:
       - job-compiler
+    volumes:
+      - /home/ubuntu/nginx-container/ssl:/etc/nginx/ssl
