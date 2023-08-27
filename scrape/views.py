@@ -272,7 +272,7 @@ def renderResults(request):
     results = getResults(search_criteria_object)
 
 
-    if results[1] == "FORCED":
+    if len(results) >= 2  and results[1] == "FORCED"::
         return render(request, 'scrape/results-forced.html', {'jobs' : results[0]} )
 
 
