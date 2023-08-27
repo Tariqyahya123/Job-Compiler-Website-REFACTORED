@@ -2,20 +2,15 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 import requests
 import json
-import logging
 import random
 from .models import ResultJobs
 from .utils import SearchCriteria, HttpClient, getApiKeys, urlEncodeJobTitleForAdzuna
 
   
 
-logging.basicConfig(filename="newfile.log",
-                    format='%(asctime)s %(message)s',
-                    filemode='w')
 
-logger = logging.getLogger()
 
-logger.setLevel(logging.DEBUG)
+
 
 class JoobleResults(HttpClient):
 
@@ -119,9 +114,6 @@ def mapUserEntryToObject(request):
 
 def getResults(object):
 
-  logger.info("Title: ", object.job_title, "Location: ", object.job_location, "Adzuna Location: ", object.adzuna_location)
-
-
 
     adzuna_app_id, adzuna_app_key, jooble_api_key = getApiKeys()
 
@@ -141,8 +133,6 @@ def getResults(object):
     adzuna_country_list = ['gb', 'us', 'at', 'au', 'be', 'br', 'ca', 'ch', 'de', 'es', 'fr', 'in', 'it', 'mx', 'nl', 'nz', 'pl', 'ru', 'sg', 'za']
 
     if object.adzuna_location in adzuna_country_list:
-
-
 
 
         adzuna_job_title = urlEncodeJobTitleForAdzuna(object.job_title)
