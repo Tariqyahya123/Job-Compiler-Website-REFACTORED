@@ -8,3 +8,4 @@ media
 Scripts
 venv
 Lib
+nginx-container/ssl/*

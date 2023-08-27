@@ -52,7 +52,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+
+CSRF_TRUSTED_ORIGINS = ['https://overwork.info', 'https://www.overwork.info']	
+
 ROOT_URLCONF = 'jobs.urls'
+
+
 
 TEMPLATES = [
     {

@@ -5,6 +5,11 @@ networks:
     name: job-compiler
     external: true
 
+
+volumes:
+  my_static_volume:
+
+
 services:
   worker1:
     build:
@@ -13,6 +18,8 @@ services:
     hostname: worker1
     networks:
       - job-compiler
+    volumes:
+      - my_static_volume:/app/staticfiles
 
   worker2:
     build:
@@ -21,10 +28,12 @@ services:
     hostname: worker2
     networks:
       - job-compiler
+    volumes:
+      - my_static_volume:/app/staticfiles
 
   load-balancer:
     build:
-      context: ../nginx-container
+      context: ./nginx-container
     container_name: load-balancer
     ports:
       - "80:80"
@@ -35,4 +44,5 @@ services:
     networks:
       - job-compiler
     volumes:
-      - /home/ubuntu/nginx-container/ssl:/etc/nginx/ssl
+      - ./nginx-container/ssl:/etc/nginx/ssl
+      - my_static_volume:/var/www/static
