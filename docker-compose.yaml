@@ -25,6 +25,7 @@ services:
   load-balancer:
     build:
       context: ../nginx-container
+    container_name: load-balancer
     ports:
       - "80:80"
       - "443:443"
