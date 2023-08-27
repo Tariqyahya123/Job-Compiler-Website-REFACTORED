@@ -134,6 +134,8 @@ def getResults(object):
 
     if object.adzuna_location in adzuna_country_list:
 
+        print ("IN LIST")
+
 
         adzuna_job_title = urlEncodeJobTitleForAdzuna(object.job_title)
 
@@ -186,9 +188,13 @@ def getResults(object):
 
     else:
 
+        print ("NOT IN LIST")
+        print (object.adzuna_location)
+
         # preventing the user from not getting any results due to jooble api limit reached
         if (jooble_results.list == None) :
 
+            print ("jooble api issue")
 
             adzuna_job_title = urlEncodeJobTitleForAdzuna(object.job_title)
 
@@ -207,6 +213,8 @@ def getResults(object):
 
         # preventing the user from not getting any results due to no results actually being found for that location.
         elif len(jooble_results.list) == 0:
+
+            print ("no jooble results")
 
             adzuna_job_title = urlEncodeJobTitleForAdzuna(object.job_title)
 
@@ -237,6 +245,9 @@ def getResults(object):
 
         elif object.adzuna_location == "":
 
+
+            print ("empty adzuna locatoin")
+
             adzuna_job_title = urlEncodeJobTitleForAdzuna(object.job_title)
 
 
@@ -258,7 +269,7 @@ def getResults(object):
 
 
 
-
+        print ("ELSE ONLY")
         return jooble_results.list
 
 
@@ -271,8 +282,12 @@ def renderResults(request):
 
     results = getResults(search_criteria_object)
 
+    print (len(results))
 
-    if results[1] == "FORCED":
+
+
+
+    if len(results) >= 2  and results[1] == "FORCED":
         return render(request, 'scrape/results-forced.html', {'jobs' : results[0]} )
 
 
