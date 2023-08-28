@@ -81,12 +81,12 @@ input[type=submit]{
     height: 2.5rem;
 
    font-size: 1.5rem;
-   font-family: 'Poppins-Light', sans-serif;
+   font-family: 'Poppins', sans-serif;
    cursor: pointer;
    
    position: relative;
    right: 200px;
-
+   color: black;
        
    }
 
