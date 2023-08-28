@@ -18,9 +18,7 @@ WORKDIR /app
 # Copy the Django code
 COPY . .
 
-# Create virtual env (notice the location?)
-# Update pip
-# Install requirements
+
 RUN pip install --no-cache-dir -r requirements.txt
 RUN python manage.py collectstatic
 
