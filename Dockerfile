@@ -7,9 +7,9 @@ COPY ./nginx/default.conf /etc/nginx/conf.d/default.conf
 # Link nginx logs to container stdout
 RUN ln -sf /dev/stdout /var/log/nginx/access.log && ln -sf /dev/stderr /var/log/nginx/error.log
 
-ENV adzuna_app_id=ac3dc425
-ENV adzuna_app_key=a77ca4c4cb4816504e4b00af81b49755
-ENV jooble_api_key=a1d4f23d-cdc4-46d6-b3fd-7fa40b962731
+ENV adzuna_app_id=API_ID
+ENV adzuna_app_key=APP_KEY
+ENV jooble_api_key=API_KEY
 
 WORKDIR /app
 
