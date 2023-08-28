@@ -94,9 +94,9 @@ input[type=submit]{
     height: 3rem;
 
    font-size: 2rem;
-   font-family: 'Poppins-Light', sans-serif;
+   font-family: 'Poppins', sans-serif;
    cursor: pointer;
-
+   color: black;
        
    }
 
